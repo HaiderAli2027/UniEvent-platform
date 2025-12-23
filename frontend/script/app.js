@@ -143,15 +143,33 @@ function toggleInterest(button, eventId) {
 // --- 6. Modal Toggle ---
 function toggleModal(id) {
     const modal = document.getElementById(id);
-    if (!modal) return;
-
     if (modal.classList.contains('hidden')) {
         modal.classList.remove('hidden');
-        // Small delay to allow the 'hidden' removal to register before opacity transition
-        setTimeout(() => modal.classList.add('opacity-100'), 10);
+        // Small timeout to allow 'hidden' to vanish before starting opacity transition
+        setTimeout(() => {
+            modal.classList.remove('opacity-0');
+            modal.classList.add('opacity-100');
+        }, 10);
     } else {
         modal.classList.remove('opacity-100');
-        // Wait for transition to finish before hiding
-        setTimeout(() => modal.classList.add('hidden'), 300);
+        modal.classList.add('opacity-0');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 300); // Matches the duration-300 class
     }
 }
+document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById('container');
+    
+    // 1. Get the mode from the URL (e.g., ?mode=signup)
+    const urlParams = new URLSearchParams(window.location.search);
+    const mode = urlParams.get('mode');
+
+    // 2. If the mode is signup, slide to the signup side immediately
+    if (mode === 'signup') {
+        container.classList.add("right-panel-active");
+    } else {
+        // Default or 'login' mode
+        container.classList.remove("right-panel-active");
+    }
+});
