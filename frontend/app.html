@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniEvent | Discover Campus Life</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./style/styles.css">
+</head>
+<body class="bg-slate-50 font-sans text-slate-900 overflow-x-hidden">
+
+    <nav class="glass fixed top-0 w-full z-[100] px-6 h-20 flex items-center justify-between border-b border-white/20">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">U</div>
+            <h1 class="text-2xl font-black tracking-tight text-indigo-900">UniEvent</h1>
+        </div>
+        
+        <div class="hidden lg:flex items-center gap-8">
+            <!-- <div class="relative">
+                <input type="text" id="eventSearch" placeholder="Search events..." class="bg-slate-100 border-none rounded-full py-2 px-10 focus:ring-2 focus:ring-indigo-400 text-sm w-64 transition-all">
+                <span class="absolute left-3 top-2.5 opacity-40">🔍</span>
+            </div> -->
+            <a href="./societyRegForm.html" 
+            class="group relative text-xs font-black text-indigo-600 uppercase tracking-widest flex items-center gap-2">
+                <span class="relative">
+                    Join as Society
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all duration-300 group-hover:w-full"></span>
+                </span>
+                <div class="w-7 h-7 rounded-full bg-indigo-50 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-all shadow-sm">
+                    <i class="fa-solid fa-plus text-[10px]"></i>
+                </div>
+            </a>
+            <a href="#upcoming" class="font-bold text-slate-600 hover:text-indigo-600 transition">Upcoming</a>
+            <a href="#past" class="font-bold text-slate-600 hover:text-indigo-600 transition">Past</a>
+        </div>
+
+        <div class="flex gap-4">
+            <button onclick="toggleModal('login-modal')" class="font-bold text-slate-600 hover:text-indigo-600 transition">Log In</button>
+            <button onclick="toggleModal('login-modal')" class="bg-black text-white px-6 py-2.5 rounded-full font-bold hover:scale-105 transition shadow-lg">Sign Up</button>
+        </div>
+    </nav>
+
+    <header class="relative min-h-screen flex flex-col justify-center items-center text-center px-4 overflow-hidden pt-20">
+        <div class="absolute inset-0 -z-10 pointer-events-none">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-purple-200 rounded-full blur-3xl opacity-40 animate-blob"></div>
+            <div class="absolute bottom-20 right-10 w-72 h-72 bg-yellow-100 rounded-full blur-3xl opacity-40 animate-blob animation-delay-2000"></div>
+            
+            <div class="stall-fall" style="left: 10%; animation-delay: 0s;">🍿</div>
+            <div class="stall-fall" style="left: 40%; animation-delay: 4s;">🍔</div>
+            <div class="stall-fall" style="left: 70%; animation-delay: 2s;">🍦</div>
+            <div class="stall-fall" style="left: 90%; animation-delay: 6s;">🍕</div>
+
+            <div class="cricket-container absolute bottom-20 left-1/2 -translate-x-1/2 w-full h-40 max-w-4xl">
+                <div class="bat absolute left-[55%] bottom-0 text-7xl">🏏</div>
+                <div class="ball absolute left-0 bottom-10 text-3xl">🥎</div>
+            </div>
+        </div>
+
+        <div class="relative z-10" onmousemove="handleParallax(event)">
+             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15rem] opacity-[0.03] parallax-item pointer-events-none" data-speed="0.5">👩‍🎨</div>
+             
+            <span class="animate-reveal bg-indigo-100 text-indigo-700 px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider mb-6 inline-block">The Campus Pulse</span>
+            <h1 class="text-5xl md:text-7xl font-black text-slate-900 leading-tight mb-8">
+                <span id="typing-text"></span><br>
+                <span id="typing-gradient" class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 cursor-active"></span>
+            </h1>
+            <p class="animate-reveal delay-400 text-xl text-slate-500 max-w-2xl mx-auto font-medium mb-12">
+                Join thousands of students discovering debating, art, and tech on campus.
+            </p>
+            <a href="#upcoming" class="bg-indigo-600 text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl hover:scale-105 transition-all">Explore Events ↓</a>
+        </div>
+    </header>
+
+    <main class="relative z-20 py-24 px-6 max-w-7xl mx-auto">
+
+        <section id="upcoming" class="mb-32">
+            <div class="flex items-center gap-6 mb-12">
+                <h2 class="text-4xl font-black text-slate-900 whitespace-nowrap">Upcoming Events</h2>
+                <div class="h-[2px] w-full bg-slate-200"></div>
+            </div>
+
+            <div class="flex flex-wrap gap-4 mb-12 items-center bg-white p-4 rounded-3xl shadow-sm border border-slate-100">
+                <span class="text-xs font-black text-slate-400 uppercase px-4 tracking-widest">Filter By:</span>
+                <select id="filterCategory" onchange="runFilters()" class="bg-slate-50 px-4 py-2 rounded-xl text-sm font-bold text-slate-600 outline-none border-none">
+                    <option value="all">All Categories</option>
+                    <option value="Debating">Debating</option>
+                    <option value="Arts">Arts</option>
+                    <option value="SSDG">SSDG</option>
+                </select>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="eventGrid">
+                <div class="flip-card" data-category="Debating">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front card-shadow bg-white rounded-[2rem] p-8 flex flex-col justify-between border border-slate-100">
+                            <div>
+                                <div class="text-5xl mb-6">🗣️</div>
+                                <span class="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Debating Society</span>
+                                <h3 class="text-2xl font-bold mt-4">The Great Showdown</h3>
+                                <p class="text-slate-500 font-medium mt-1 italic">Multipurpose Hall • Oct 30</p>
+                            </div>
+                            <div class="flex gap-3 mt-8">
+                                <button onclick="flip(this)" class="flex-1 bg-slate-100 py-3 rounded-2xl font-bold text-sm hover:bg-slate-200 transition">Details</button>
+                                <button onclick="toggleModal('login-modal')" class="flex-1 bg-indigo-600 text-white py-3 rounded-2xl font-bold text-sm hover:bg-indigo-700 transition">Register</button>
+                            </div>
+                        </div>
+                        <div class="flip-card-back bg-indigo-900 text-white rounded-[2rem] p-8 flex flex-col justify-between text-left">
+                            <div class="flex justify-between items-start mb-4">
+                                <h4 class="text-xl font-bold">About Event</h4>
+                                <div class="flex gap-2">
+                                    <button onclick="toggleInterest(this, 101)" class="w-8 h-8 bg-white/10 rounded-full hover:bg-pink-500 transition text-xs flex items-center justify-center">
+                                        <i class="fa-solid fa-star"></i>
+                                    </button>
+                                    <span class="status-label px-3 py-1 bg-white/20 rounded-full text-[10px] font-black uppercase flex items-center">Interested</span>
+                                </div>
+                            </div>
+                            <p class="text-slate-300 text-sm leading-relaxed mb-10">Prepare for a high-intensity debate tournament. We tackle current affairs and campus policies.</p>
+                            
+                            <button onclick="flip(this)" class="w-full bg-white/10 py-3 rounded-2xl font-bold text-sm hover:bg-white/20 transition">Back to Card</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" data-category="Arts">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front card-shadow bg-white rounded-[2rem] p-8 flex flex-col justify-between border border-slate-100">
+                            <div>
+                                <div class="text-5xl mb-6">🎨</div>
+                                <span class="bg-pink-50 text-pink-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Kawish Magazine</span>
+                                <h3 class="text-2xl font-bold mt-4">Art Competition</h3>
+                                <p class="text-slate-500 font-medium mt-1 italic">Main Hall • Nov 05</p>
+                            </div>
+                            <div class="flex gap-3 mt-8">
+                                <button onclick="flip(this)" class="flex-1 bg-slate-100 py-3 rounded-2xl font-bold text-sm hover:bg-slate-200 transition">Details</button>
+                                <button onclick="toggleModal('login-modal')" class="flex-1 bg-indigo-600 text-white py-3 rounded-2xl font-bold text-sm hover:bg-indigo-700 transition">Register</button>
+                            </div>
+                        </div>
+                        <div class="flip-card-back bg-pink-900 text-white rounded-[2rem] p-8 flex flex-col justify-between text-left">
+                            <div class="flex justify-between items-start mb-4">
+                                <h4 class="text-xl font-bold">About Event</h4>
+                                <div class="flex gap-2 text-xs">
+                                    <button onclick="toggleInterest(this, 102)" class="w-8 h-8 bg-white/10 rounded-full hover:bg-indigo-500 transition flex items-center justify-center">
+                                        <i class="fa-solid fa-star"></i>
+                                    </button>
+                                    <span class="status-label px-3 py-1 bg-white/20 rounded-full text-[10px] font-black uppercase flex items-center">Interested</span>
+                                </div>
+                            </div>
+                            <p class="text-slate-100 text-sm leading-relaxed mb-10">Showcase your talent in sketching, digital art, or painting. Winning entries published!</p>
+                            <button onclick="flip(this)" class="w-full bg-white/10 py-3 rounded-2xl font-bold text-sm hover:bg-white/20 transition">Back to Card</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" data-category="SSDG">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front card-shadow bg-white rounded-[2rem] p-8 flex flex-col justify-between border border-slate-100">
+                            <div>
+                                <div class="text-5xl mb-6">📚</div>
+                                <span class="bg-emerald-50 text-emerald-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">SSDG Society</span>
+                                <h3 class="text-2xl font-bold mt-4">SSDG Book Fair</h3>
+                                <p class="text-slate-500 font-medium mt-1 italic">Library Lawn • Nov 12</p>
+                            </div>
+                            <div class="flex gap-3 mt-8">
+                                <button onclick="flip(this)" class="flex-1 bg-slate-100 py-3 rounded-2xl font-bold text-sm hover:bg-slate-200 transition">Details</button>
+                                <button onclick="toggleModal('login-modal')" class="flex-1 bg-indigo-600 text-white py-3 rounded-2xl font-bold text-sm hover:bg-indigo-700 transition">Register</button>
+                            </div>
+                        </div>
+                        <div class="flip-card-back bg-emerald-900 text-white rounded-[2rem] p-8 flex flex-col justify-between text-left">
+                             <div class="flex justify-between items-start mb-4">
+                                <h4 class="text-xl font-bold">About Event</h4>
+                                <div class="flex gap-2 text-xs">
+                                    <button onclick="toggleInterest(this, 103)" class="w-8 h-8 bg-white/10 rounded-full hover:bg-pink-500 transition flex items-center justify-center">
+                                        <i class="fa-solid fa-star"></i>
+                                    </button>
+                                    <span class="status-label px-3 py-1 bg-white/20 rounded-full text-[10px] font-black uppercase flex items-center">Interested</span>
+                                </div>
+                            </div>
+                            <p class="text-slate-100 text-sm leading-relaxed mb-10">Exchange old books and join our open-mic poetry session at dusk.</p>
+                            <button onclick="flip(this)" class="w-full bg-white/10 py-3 rounded-2xl font-bold text-sm hover:bg-white/20 transition">Back to Card</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="past">
+            <div class="flex items-center gap-6 mb-12">
+                <h2 class="text-4xl font-black text-slate-300 whitespace-nowrap">Past Events</h2>
+                <div class="h-[2px] w-full bg-slate-200"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 opacity-60 filter grayscale">
+                 <div class="bg-white rounded-[2rem] p-8 border border-slate-100 card-shadow flex flex-col justify-between h-[400px]">
+                    <div>
+                        <div class="text-5xl mb-6">💻</div>
+                        <span class="bg-slate-100 text-slate-400 px-3 py-1 rounded-full text-xs font-bold uppercase">Tech Society</span>
+                        <h3 class="text-2xl font-bold mt-4">Cyber Hack</h3>
+                        <p class="text-slate-500 font-medium mt-1 italic">Lab 01 • Sept 10</p>
+                    </div>
+                    <button class="w-full bg-slate-100 text-slate-400 py-4 rounded-2xl font-bold cursor-not-allowed">Registration Closed</button>
+                 </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-12 bg-white border-t text-center">
+        <p class="text-slate-400 font-medium">&copy; 2025 UniEvent. Organized for the University Community.</p>
+    </footer>
+
+    <div id="login-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-[200] hidden flex items-center justify-center opacity-0 transition-opacity">
+        <div class="bg-white rounded-3xl p-8 w-full max-w-sm m-4 shadow-2xl relative">
+            <button onclick="toggleModal('login-modal')" class="absolute top-4 right-4 text-slate-400">✕</button>
+            <h2 class="text-3xl font-black mb-2">Welcome</h2>
+            <p class="text-slate-500 mb-8">Sign in to join the events.</p>
+            WORKING ON IT!
+    </div>
+
+    <script src="./script/app.js"></script>
+</body>
+</html>
