@@ -18,7 +18,6 @@ UniEvent is a full-stack web application designed to centralize campus life by p
 - [Challenges Overcome](#-challenges-overcome)
 - [Future Roadmap](#-future-roadmap)
 - [Setup Instructions](#-setup-instructions)
-- [Contributors](#-contributors)
 
 ---
 
@@ -109,23 +108,28 @@ The platform is designed for **scalability, security, and usability**, making it
 
 ## 🖼 Screenshots
 
-> Replace these placeholders with your actual screenshots
-
 ### 🔐 Login & Signup
 
-![Login Page](screenshots/login.png)
+!![Login Form](screenshots/login.png)
+!![Sign-up Form](screenshots/signup.png)
 
-### 📰 Event Feed
+### 📰 Landing Page
 
-![Event Feed](screenshots/feed.png)
+![Navbar & Header Section](screenshots/l1.png)
+![Events](screenshots/l2.png)
 
 ### 🏛 Society Dashboard
 
-![Society Dashboard](screenshots/society-dashboard.png)
+![Create Events](screenshots/d1.png)
+![View Events](screenshots/d2.png)
+
+### 🏛 Society Registration
+
+![Join as a Society](screenshots/Society-approval.png)
 
 ### 🛡 Admin Panel
 
-![Admin Panel](screenshots/admin-panel.png)
+![Admin Approvals](screenshots/adminl.png)
 
 ---
 
@@ -184,18 +188,22 @@ The platform is designed for **scalability, security, and usability**, making it
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/unievent.git
+git clone https://github.com/HaiderAli2027/unievent.git
 
 # Navigate into the project
-cd unievent
+cd UniEvent-platform
 
 # Create virtual environment
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+python -m venv .venv
+source .venv/bin/activate
+
+#Navigate in backend
+cd backend
 
 # Install dependencies
 pip install -r requirements.txt
 
+
 # Run the Flask server
-python app.py
+python run.py
 ```
