@@ -1,0 +1,160 @@
+/* login-signup.css */
+
+:root {
+    --primary: #4f46e5;
+    --primary-dark: #3730a3;
+    --accent: #c084fc;
+    --white: #ffffff;
+    --error: #ef4444;
+    --success: #10b981;
+    --bg-light: #f1f5f9;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    height: 100vh; margin: 0;
+    display: flex; justify-content: center; align-items: center;
+    overflow: hidden; perspective: 1000px;
+}
+
+/* --- BLOBS & BACKGROUND --- */
+.bg-wrapper {
+    position: fixed; inset: 0; z-index: -1;
+    background: linear-gradient(45deg, white, #727ce9, #c084fc);
+    background-size: 400% 400%;
+    animation: gradientShift 4s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- CONTAINER 3D --- */
+.container {
+    background: #fff; border-radius: 30px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+    position: relative; width: 850px; max-width: 100%; min-height: 580px;
+    overflow: hidden; transition: transform 0.1s ease-out;
+    transform-style: preserve-3d;
+}
+
+.form-container {
+    position: absolute; top: 0; height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.sign-in-container { left: 0; width: 50%; z-index: 2; }
+.sign-up-container { left: 0; width: 50%; opacity: 0; z-index: 1; pointer-events: none; }
+
+.container.right-panel-active .sign-in-container { transform: translateX(100%); opacity: 0; }
+.container.right-panel-active .sign-up-container { transform: translateX(100%); opacity: 1; z-index: 5; pointer-events: all; }
+
+form {
+    background-color: #ffffff; display: flex; align-items: center;
+    justify-content: center; flex-direction: column;
+    padding: 0 50px; height: 100%; text-align: center;
+}
+
+h1 { margin: 0; font-weight: 800; }
+.subtext { font-size: 14px; color: #64748b; margin-bottom: 20px; }
+
+/* --- ENHANCED INPUTS & EYE ICON FIX --- */
+.input-group {
+    position: relative;
+    width: 100%;
+    margin: 6px 0;
+    display: flex;
+    align-items: center;
+}
+
+input {
+    background-color: var(--bg-light); border: 2px solid transparent;
+    padding: 12px 15px; border-radius: 12px;
+    width: 100%; font-family: inherit; font-weight: 600; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced Focus Effect (Premium Feel) */
+input:focus { 
+    border-color: var(--primary); 
+    background: #fff; 
+    outline: none;
+    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.1);
+    transform: translateY(-1px);
+}
+
+/* Perfect Eye Icon Position */
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    cursor: pointer;
+    color: #94a3b8;
+    z-index: 10;
+    transition: color 0.3s;
+    font-size: 14px;
+}
+
+.password-toggle:hover {
+    color: var(--primary);
+}
+
+/* --- BUTTONS --- */
+.fill-button {
+    position: relative; background: #ab84f8; color: white; border: 2px solid #ab84f8;
+    padding: 12px 45px; border-radius: 12px; font-weight: 800; cursor: pointer;
+    width: 100%; margin-top: 15px; overflow: hidden; z-index: 1; transition: color 0.4s ease;
+}
+
+.fill-button::before {
+    content: ''; position: absolute; top: 0; left: -100%;
+    width: 100%; height: 100%; background: var(--primary);
+    transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1); z-index: -1;
+}
+
+.fill-button.loading::before { left: 0; }
+
+/* --- OVERLAY --- */
+.overlay-container {
+    position: absolute; top: 0; left: 50%; width: 50%; height: 100%;
+    overflow: hidden; transition: transform 0.6s ease-in-out; z-index: 100;
+}
+.container.right-panel-active .overlay-container { transform: translateX(-100%); }
+
+.overlay {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: #FFFFFF; position: relative; left: -100%;
+    height: 100%; width: 200%; transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+.container.right-panel-active .overlay { transform: translateX(50%); }
+
+.overlay-panel {
+    position: absolute; display: flex; align-items: center;
+    justify-content: center; flex-direction: column;
+    padding: 0 40px; text-align: center; top: 0; height: 100%; width: 50%;
+    transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left { transform: translateX(-20%); }
+.container.right-panel-active .overlay-left { transform: translateX(0); }
+.overlay-right { right: 0; transform: translateX(0); }
+.container.right-panel-active .overlay-right { transform: translateX(20%); }
+
+.ghost {
+    background-color: transparent; border: 2px solid #FFFFFF; color: #FFFFFF;
+    padding: 10px 30px; border-radius: 12px; font-weight: 700;
+    cursor: pointer; margin-top: 20px;
+    transition: 0.3s;
+}
+
+.ghost:hover { background: #fff; color: var(--primary); }
+
+/* Social Icons Style */
+.social-login i {
+    font-size: 18px; color: #94a3b8; transition: 0.3s;
+}
+.social-login i:hover { color: var(--primary); transform: translateY(-2px); }

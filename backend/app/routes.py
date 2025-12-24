@@ -11,6 +11,9 @@ FRONTEND_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__fi
 # Serve HTML pages from frontend folder
 @main.route('/')
 def index():
+    return send_from_directory(FRONTEND_DIR, 'app.html')
+@main.route('/login')
+def login_user():
     return send_from_directory(FRONTEND_DIR, 'login-signup.html')
 
 @main.route('/dashboard')
