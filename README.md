@@ -129,7 +129,7 @@ The platform is designed for **scalability, security, and usability**, making it
 
 ### 🛡 Admin Panel
 
-![Admin Approvals](screenshots/adminl.png)
+![Admin Approvals](screenshots/admin1.png)
 
 ---
 
