@@ -1,0 +1,85 @@
+/* --- Global Fixes --- */
+html { scroll-behavior: smooth; }
+.card-shadow { box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05); }
+
+/* --- Background Blobs --- */
+@keyframes blob {
+    0%, 100% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+.animate-blob { animation: blob 10s infinite; }
+.animation-delay-2000 { animation-delay: 2s; }
+
+/* --- Falling Items --- */
+.stall-fall {
+    position: absolute;
+    top: -10%;
+    font-size: 3rem;
+    opacity: 0.15;
+    animation: fallDown 15s linear infinite;
+    z-index: -5;
+}
+@keyframes fallDown {
+    0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.15; }
+    90% { opacity: 0.15; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* --- Cricket Animation --- */
+.ball { animation: bowlAndHit 6s ease-in infinite; }
+.bat { transform-origin: top center; animation: swingBat 6s ease-in infinite; }
+
+@keyframes bowlAndHit {
+    0% { left: 0%; bottom: 40px; transform: scale(1); opacity: 0; }
+    5% { opacity: 1; }
+    38% { left: 53%; bottom: 45px; transform: scale(1.1); }
+    40% { left: 55%; bottom: 50px; transform: scale(1.3); filter: brightness(1.2); }
+    65% { left: 120%; bottom: 350px; transform: scale(0.3); opacity: 0; }
+    100% { left: 120%; opacity: 0; }
+}
+@keyframes swingBat {
+    0%, 35% { transform: rotate(0deg); }
+    40% { transform: rotate(-55deg); }
+    45% { transform: rotate(30deg); }
+    60%, 100% { transform: rotate(0deg); }
+}
+
+/* --- Flip Card Core --- */
+.flip-card {
+    height: 420px;
+    perspective: 1200px;
+    background-color: transparent;
+}
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+}
+.flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.flip-card-back { transform: rotateY(180deg); }
+
+/* --- Typing & Utils --- */
+.cursor-active::after { content: '|'; animation: blink 1s infinite; color: #4f46e5; margin-left: 2px; }
+@keyframes blink { 50% { opacity: 0; } }
+
+.glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(15px); }
+
+@keyframes reveal {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+.animate-reveal { animation: reveal 0.8s ease-out forwards; }
+.delay-400 { animation-delay: 0.4s; }

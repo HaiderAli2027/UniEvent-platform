@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 p-6 md:p-12">
+    <div class="max-w-3xl mx-auto bg-white rounded-[2.5rem] p-10 shadow-2xl border border-slate-100">
+        <h2 class="text-4xl font-black text-indigo-900 mb-2">Join as Society</h2>
+        <p class="text-slate-500 mb-10">Register your organization to start hosting events.</p>
+        
+        <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="md:col-span-2">
+                <label class="text-[10px] font-bold uppercase text-slate-400">Society Name</label>
+                <input type="text" name="name" class="w-full p-4 bg-slate-50 rounded-2xl outline-none border-none mt-1">
+            </div>
+            <div>
+                <label class="text-[10px] font-bold uppercase text-slate-400">Official Email</label>
+                <input type="email" name="email" class="w-full p-4 bg-slate-50 rounded-2xl border-none mt-1">
+            </div>
+            <div>
+                <label class="text-[10px] font-bold uppercase text-slate-400">WhatsApp Number</label>
+                <input type="text" name="whatsapp_number" class="w-full p-4 bg-slate-50 rounded-2xl border-none mt-1">
+            </div>
+            <div class="md:col-span-2">
+                <label class="text-[10px] font-bold uppercase text-slate-400">Instagram Handle</label>
+                <input type="text" name="instagram_handle" placeholder="@society" class="w-full p-4 bg-slate-50 rounded-2xl border-none mt-1">
+            </div>
+            <button class="md:col-span-2 py-5 bg-indigo-600 text-white rounded-[2rem] font-black text-lg shadow-xl hover:bg-indigo-700 transition">Submit Application</button>
+        </form>
+    </div>
+</body>
+</html>
