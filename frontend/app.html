@@ -35,9 +35,16 @@
             <a href="#past" class="font-bold text-slate-600 hover:text-indigo-600 transition">Past</a>
         </div>
 
-        <div class="flex gap-4">
-            <button onclick="toggleModal('login-modal')" class="font-bold text-slate-600 hover:text-indigo-600 transition">Log In</button>
-            <button onclick="toggleModal('login-modal')" class="bg-black text-white px-6 py-2.5 rounded-full font-bold hover:scale-105 transition shadow-lg">Sign Up</button>
+       <div class="flex items-center gap-2 bg-slate-200/50 backdrop-blur-md p-1.5 rounded-full border border-white/20 shadow-inner">
+            <a href="login-signup.html?mode=login" 
+                class="px-6 py-2.5 rounded-full text-slate-700 font-bold text-sm tracking-wide hover:bg-white/80 hover:text-indigo-600 transition-all duration-300 text-center">
+                Log In
+            </a>
+            <a href="login-signup.html?mode=signup" 
+                class="relative group overflow-hidden bg-indigo-600 text-white px-8 py-2.5 rounded-full font-bold text-sm tracking-wide shadow-[0_0_20px_rgba(79,70,229,0.4)] hover:shadow-[0_0_25px_rgba(79,70,229,0.6)] transition-all duration-300 transform hover:scale-105 active:scale-95 text-center">
+                <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></span>
+                <span class="relative">Sign Up</span>
+            </a>
         </div>
     </nav>
 

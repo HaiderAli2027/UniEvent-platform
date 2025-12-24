@@ -44,29 +44,19 @@
             }
         }
     </style>
+    <title>UniEvent | Gateway</title>
+    <link rel="stylesheet" href="./style/login-signup.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body class="bg-plum min-h-screen flex items-center justify-center p-4 md:p-10 font-sans">
-
-    <div class="max-w-5xl w-full grid grid-cols-1 md:grid-cols-10 shadow-2xl rounded-[2.5rem] overflow-hidden min-h-[600px] glass">
-        
-        <div class="hidden md:flex md:col-span-4 bg-plum p-12 flex-col justify-between relative overflow-hidden">
-            <div class="relative z-10">
-                <h1 class="text-4xl font-black text-white tracking-tighter mb-4">UniEvent</h1>
-                <p class="text-pink-200/70 font-medium">Join the heartbeat of campus life.</p>
-            </div>
-            
-            <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-pink-500/20 rounded-full blur-3xl"></div>
-            <div class="absolute top-20 -right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
-
-            <div class="relative z-10">
-                <div class="flex -space-x-3 mb-4">
-                    <div class="w-10 h-10 rounded-full border-2 border-plum bg-slate-200"></div>
-                    <div class="w-10 h-10 rounded-full border-2 border-plum bg-slate-300"></div>
-                    <div class="w-10 h-10 rounded-full border-2 border-plum bg-pink-400 flex items-center justify-center text-[10px] font-bold text-white">+500</div>
-                </div>
-                <p class="text-xs text-pink-100/50 uppercase font-black tracking-widest">Students already joined</p>
-            </div>
+<body>
+    
+    <div class="bg-wrapper">
+        <div class="blob-c">
+            <div class="shape-blob one"></div>
+            <div class="shape-blob two"></div>
         </div>
+    </div>
 
         <div class="md:col-span-6 p-8 md:p-16 flex flex-col justify-center bg-white">
             
@@ -123,14 +113,81 @@
                 </div>
                 <button type="submit" id="signupBtn" class="w-full py-4 btn-plum text-white rounded-2xl font-black shadow-xl">
                     CREATE ACCOUNT
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form id="signUpForm">
+                <h1 class="font-black">Create Account</h1>
+                <span class="subtext">Join the community</span>
+                
+                <div class="role-selection">
+                    <label class="role-pill">
+                        <input type="radio" name="role" value="society" checked>
+                        <span>Society</span>
+                    </label>
+                    <label class="role-pill">
+                        <input type="radio" name="role" value="admin">
+                        <span>Admin</span>
+                    </label>
+                </div>
+                
+                <div class="input-group">
+                    <input type="text" placeholder="Full Name" id="signUpName" required />
+                </div>
+                
+                <div id="dynamicFields" class="input-group-stack" style="width: 100%;">
+                    <div class="input-group">
+                        <input type="text" placeholder="Society Name" id="extraField" required />
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <input type="email" placeholder="Email Address" id="signUpEmail" required />
+                </div>
+                
+                <div class="input-group password-group">
+                    <input type="password" placeholder="Password" id="signUpPassword" required />
+                    <i class="password-toggle fas fa-eye" data-target="signUpPassword"></i>
+                </div>
+                
+                <div id="passwordRecommendations"></div>
+                
+                <button type="submit" class="fill-button">
+                    <span class="btn-text">Join Now</span>
                 </button>
             </form>
+        </div>
 
-            <div class="mt-10">
-                <p class="text-center text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-6">Or Login With</p>
-                <div class="flex justify-center gap-6">
-                    <button class="w-12 h-12 rounded-full border border-slate-100 flex items-center justify-center hover:bg-slate-50 transition"><i class="fa-brands fa-google text-slate-600"></i></button>
-                    <button class="w-12 h-12 rounded-full border border-slate-100 flex items-center justify-center hover:bg-slate-50 transition"><i class="fa-brands fa-facebook-f text-slate-600"></i></button>
+        <div class="form-container sign-in-container">
+            <form id="signInForm">
+                <h1 class="font-black">Welcome Back</h1>
+                <span class="subtext">Access your dashboard</span>
+                
+                <div class="input-group">
+                    <input type="email" placeholder="Email" id="signInEmail" required />
+                </div>
+                
+                <div class="input-group password-group">
+                    <input type="password" placeholder="Password" id="signInPassword" required />
+                    <i class="password-toggle fas fa-eye" data-target="signInPassword"></i>
+                </div>
+                
+                <button type="submit" class="fill-button">
+                    <span class="btn-text">Sign In</span>
+                </button>
+            </form>
+        </div>
+
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left" mode="login">
+                    <h1 class="text-white">Already a member?</h1>
+                    <p>Log in to manage your events and track your society's growth.</p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right" mode="signup">
+                    <h1 class="text-white">New here?</h1>
+                    <p>Register your society today and start your journey with UniEvent.</p>
+                    <button class="ghost" id="signUp">Register Now</button>
                 </div>
             </div>
             
@@ -257,5 +314,6 @@
             }
         });
     </script>
+    <script src="./script/login-signup.js"></script>
 </body>
 </html>
