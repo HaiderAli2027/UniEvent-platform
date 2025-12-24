@@ -110,8 +110,8 @@ The platform is designed for **scalability, security, and usability**, making it
 
 ### 🔐 Login & Signup
 
-!![Login Form](screenshots/login.png)
-!![Sign-up Form](screenshots/signup.png)
+![Login Form](screenshots/login.png)
+![Sign-up Form](screenshots/signup.png)
 
 ### 📰 Landing Page
 
@@ -130,6 +130,8 @@ The platform is designed for **scalability, security, and usability**, making it
 ### 🛡 Admin Panel
 
 ![Admin Approvals](screenshots/adminl.png)
+
+---
 
 ---
 
