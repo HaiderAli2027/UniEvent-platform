@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+
+:root {
+    --indigo-primary: #4f46e5;
+    --indigo-deep: #1e1b4b;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* --- MAIN CARD --- */
+.main-card {
+    display: flex;
+    width: 100%;
+    max-width: 1050px;
+    height: 560px;
+    background: white;
+    border-radius: 2.5rem;
+    box-shadow: 0 50px 100px -20px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+/* --- ENHANCED SIDE PANEL --- */
+.side-panel {
+    width: 40%;
+    background: #4338ca; /* Solid base */
+    background: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
+    position: relative;
+    padding: 3rem;
+    overflow: hidden;
+}
+
+/* High-Obvious Pattern */
+.pattern-overlay {
+    position: absolute;
+    inset: 0;
+    /* Mixed patterns for more "Obvious" look */
+    background-image: 
+        radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.3) 1.5px, transparent 0),
+        linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.05) 75%, transparent 75%, transparent);
+    background-size: 30px 30px, 60px 60px;
+    animation: movePattern 20s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes movePattern {
+    from { background-position: 0 0; }
+    to { background-position: 300px 300px; }
+}
+
+.main-icon {
+    font-size: 3rem;
+    background: white;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    margin-bottom: 10px;
+    animation: iconFloat 4s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+/* High-Contrast Orbs */
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.6;
+    mix-blend-mode: overlay;
+}
+.orb-t { width: 300px; height: 300px; background: #f472b6; top: -100px; right: -100px; animation: orbMove 15s infinite alternate; }
+.orb-b { width: 250px; height: 250px; background: #38bdf8; bottom: -80px; left: -80px; animation: orbMove 12s infinite alternate-reverse; }
+.orb-c { width: 150px; height: 150px; background: #fbbf24; top: 20%; left: -50px; animation: orbMove 10s infinite alternate; }
+
+@keyframes orbMove {
+    from { transform: scale(1) translate(0,0); }
+    to { transform: scale(1.3) translate(50px, 50px); }
+}
+
+/* --- RIGHT SIDE --- */
+.form-panel {
+    width: 60%;
+    background: #ffffff;
+}
+
+.form-group label {
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #94a3b8;
+    margin-bottom: 4px;
+    display: block;
+    letter-spacing: 0.05em;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem 1.1rem;
+    background: #f1f5f9;
+    border: 2px solid transparent;
+    border-radius: 1rem;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.form-input:focus {
+    outline: none;
+    background: #fff;
+    border-color: var(--indigo-primary);
+    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.1);
+}
+
+.upload-area {
+    border: 2px dashed #e2e8f0;
+    padding: 1rem;
+    border-radius: 1.25rem;
+    transition: all 0.3s;
+}
+.upload-area:hover { border-color: var(--indigo-primary); background: #f5f3ff; }
+
+/* --- SUBMIT BUTTON --- */
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--indigo-primary);
+    color: white;
+    border-radius: 1.25rem;
+    font-weight: 800;
+    font-size: 14px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+    box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.4);
+}
+
+.btn-fill {
+    position: absolute;
+    inset: 0;
+    background: var(--indigo-deep);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+.submit-btn:hover .btn-fill { transform: scaleX(1); }
+
+/* --- ANIMATIONS --- */
+@keyframes entrance {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-entrance { animation: entrance 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+@media (max-width: 1024px) {
+    .main-card { height: auto; flex-direction: column; overflow-y: auto; }
+    .side-panel { display: none; }
+    .form-panel { width: 100%; }
+}

@@ -1,37 +1,53 @@
 from flask import Flask
 from flask_cors import CORS
-from flask_jwt_extended import JWTManager
 from app.models import db
-from datetime import timedelta
+import os
 
 def create_app():
     app = Flask(__name__)
+    
+    # Configuration
+    app.config['SECRET_KEY'] = 'your-secret-key-here'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///hackathon.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     
-    # JWT Configuration
-    app.config['JWT_SECRET_KEY'] = 'your-secret-key-change-in-production'
-    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=30)
-    app.config['JWT_ALGORITHM'] = 'HS256'
-    
+    # Initialize extensions
     db.init_app(app)
-    jwt = JWTManager(app)
-    CORS(app)
+    CORS(app, resources={r"/api/*": {"origins": "*"}})
     
+    # Create tables and default admin
     with app.app_context():
-        # Create all database tables
         db.create_all()
         
-        # Register auth routes
-        from app.auth import register_auth_routes
-        register_auth_routes(app)
+        # Create default admin if not exists
+        try:
+            from app.models import User
+            admin = User.query.filter_by(email='admin@unievent.com').first()
+            
+            if not admin:
+                admin = User(
+                    username='admin',
+                    email='admin@unievent.com',
+                    first_name='Admin',
+                    last_name='User',
+                    role='admin'
+                )
+                admin.set_password('admin123')
+                db.session.add(admin)
+                db.session.commit()
+                print("✅ Default admin created!")
+                print("📧 Email: admin@unievent.com")
+                print("🔑 Password: admin123")
+            else:
+                print("✅ Admin already exists")
+        except Exception as e:
+            print(f"Note: {e}")
+            db.session.rollback()
         
-        # Register event routes
-        from app.events import register_events_routes
-        register_events_routes(app)
-        
-        # Register other routes
-        from app.routes import api_bp
-        app.register_blueprint(api_bp, url_prefix='/api')
+        print("Database ready!")
+    
+    # Register blueprints
+    from app.routes import main
+    app.register_blueprint(main)
     
     return app
