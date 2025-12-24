@@ -1,62 +1,201 @@
-UniEvent: Campus Event Discovery Platform
+# 🎓 UniEvent — Campus Event Discovery Platform
 
-"Every Event. One Platform." UniEvent is a high-performance web application designed to centralize campus life. It eliminates the "poster-scatter" problem by providing a single source of truth for students to find events and for societies to grow their community.
+> **Every Event. One Platform.**
 
-The Problem:
-Campus engagement is currently fragmented. Information is buried in WhatsApp groups, Instagram stories, and physical notice boards.
+UniEvent is a full-stack web application designed to centralize campus life by providing a **single source of truth for university events**. It eliminates the traditional _poster-scatter_ problem and empowers students, societies, and administrators through a unified digital ecosystem.
 
-1. Students miss out on opportunities because they don't see them in time.
-2. Societies struggle to reach beyond their existing follower base.
-3. Data on event engagement (likes, views, attendance) is almost non-existent.
+---
 
-The Solution
-UniEvent provides a centralized dashboard where:
+## 📌 Table of Contents
 
-1. Students can discover, like, and comment on events in a modern, interactive feed.
-2. Societies can register, get verified, and manage their events through a professional Command Center.
-3. Admins oversee the ecosystem to ensure quality and security.
+- [Problem Statement](#-problem-statement)
+- [Solution Overview](#-solution-overview)
+- [System Architecture](#-system-architecture)
+- [Key Features](#-key-features)
+- [Screenshots](#-screenshots)
+- [Tech Stack](#-tech-stack)
+- [Security & Access Control](#-security--access-control)
+- [Challenges Overcome](#-challenges-overcome)
+- [Future Roadmap](#-future-roadmap)
+- [Setup Instructions](#-setup-instructions)
+- [Contributors](#-contributors)
 
-Technical Architecture
-Frontend (The Experience)
+---
 
-1. Modern UI: Built with Tailwind CSS for a "glassmorphic" and responsive design.
-2. Interactive UX: \* 3D Login: A mouse-tracking 3D parallax effect on the login card
-3. Dynamic Typing: Hero section typing effects for a premium feel.
-4. Live Dashboard: Real-time role switching between Admin and Society views.
-5. Technologies: HTML5, JavaScript (ES6+), FontAwesome.
+## ❓ Problem Statement
 
-Backend (The Core)
+Campus engagement is currently **fragmented and inefficient**:
 
-1. Framework: Flask (Python) with a modular Blueprint structure.
-2. Database: SQLAlchemy (SQLite) featuring complex relationships (Many-to-Many for Event Likes).
-3. Security: Role-Based Access Control (RBAC), password hashing with Werkzeug, and frontend-gatekeeping logic.
-4. API: RESTful architecture serving JSON data to a decoupled frontend.
+- 📱 Event information is scattered across WhatsApp groups, Instagram stories, and notice boards
+- 🎯 Students miss opportunities due to late or missed visibility
+- 📢 Societies struggle to reach beyond their existing audience
+- 📊 No structured data exists for event engagement or reach
 
-Key Features
+---
 
-1. Interactive Event Feed
-   Real-time Interaction: Users can "Interest" (Like) events, which updates the database instantly.
-   Social Connectivity: Direct links to Instagram, WhatsApp, and Google Registration Forms.
-   Filter Logic: Sort events by category (Workshops, Socials, Competitions).
+## 💡 Solution Overview
 
-2. Society Command Center
-   Event Publisher: Professional interface to upload posters, venues, and descriptions.
-   Analytics: View stats on how many students have engaged with specific events.
-   Verification Status: Societies can track their approval status from the university.
+**UniEvent** introduces a centralized platform where:
 
-3. Role-Based Access Control (RBAC)
-   Student: Can view, search, and engage.
-   Society: Access to the Management Dashboard once verified.
-   Admin: Full system oversight, including society verification and event moderation.
+- 🎓 **Students** can discover, like, and engage with events in a modern feed
+- 🏛 **Societies** manage and publish events via a professional command center
+- 🛡 **Admins** oversee verification, moderation, and system integrity
 
-Challenges Overcome:
+The platform is designed for **scalability, security, and usability**, making it suitable for real university deployment.
 
-1. Managing the state of the 3D parallax effect while handling real-time form validation in login-signup.js.
-2. Relationship Mapping: Implementing a Many-to-Many relationship in SQLAlchemy to track "User Likes" across hundreds of events efficiently.
-3. Security Gatekeeping: Implementing checkAdminAccess() on the frontend to ensure society/admin dashboards are invisible to standard student accounts.
+---
 
-Future Roadmap
+## 🧱 System Architecture
 
-1. Push Notifications: Instant alerts when a "followed" society posts a new event.
-2. QR Check-in: Generating unique QR codes for event attendance tracking.
-3. In-App Chat: Allowing students to message society leads directly for inquiries.
+### Frontend — _The Experience_
+
+- 🎨 **Modern UI**: Glassmorphic and fully responsive design using Tailwind CSS
+- 🧊 **3D Login Experience**: Mouse-tracking parallax effect for immersive interaction
+- ⌨️ **Dynamic Typing Effects**: Hero section animations for premium feel
+- 🔄 **Live Role Switching**: Seamless transition between Student, Society, and Admin dashboards
+- 🛠 Technologies:
+  - HTML5
+  - JavaScript (ES6+)
+  - Tailwind CSS
+  - Font Awesome
+
+---
+
+### Backend — _The Core_
+
+- 🧩 **Framework**: Flask (Python) with modular Blueprint architecture
+- 🗄 **Database**: SQLAlchemy (SQLite) with complex relationships
+  - Many-to-Many mapping for Event Likes
+- 🔐 **Security**:
+  - Role-Based Access Control (RBAC)
+  - Password hashing using Werkzeug
+  - Frontend route gatekeeping
+- 🔁 **API Design**:
+  - RESTful JSON-based API
+  - Decoupled frontend-backend architecture
+
+---
+
+## ✨ Key Features
+
+### 1️⃣ Interactive Event Feed
+
+- 👍 Real-time “Interest” (Like) system
+- 🔗 Direct links to:
+  - Instagram
+  - WhatsApp
+  - Google Registration Forms
+- 🗂 Category-based filtering (Workshops, Socials, Competitions)
+
+---
+
+### 2️⃣ Society Command Center
+
+- 📤 Event publishing with poster upload, venue, and descriptions
+- 📈 Engagement analytics (likes & views)
+- ✅ Verification status tracking for societies
+
+---
+
+### 3️⃣ Role-Based Access Control (RBAC)
+
+| Role    | Permissions                                       |
+| ------- | ------------------------------------------------- |
+| Student | View, search, and interact with events            |
+| Society | Publish and manage events after verification      |
+| Admin   | Verify societies, moderate events, oversee system |
+
+---
+
+## 🖼 Screenshots
+
+> Replace these placeholders with your actual screenshots
+
+### 🔐 Login & Signup
+
+![Login Page](screenshots/login.png)
+
+### 📰 Event Feed
+
+![Event Feed](screenshots/feed.png)
+
+### 🏛 Society Dashboard
+
+![Society Dashboard](screenshots/society-dashboard.png)
+
+### 🛡 Admin Panel
+
+![Admin Panel](screenshots/admin-panel.png)
+
+---
+
+## 🧰 Tech Stack
+
+**Frontend**
+
+- HTML5
+- Tailwind CSS
+- JavaScript (ES6+)
+
+**Backend**
+
+- Python
+- Flask
+- SQLAlchemy
+
+**Database**
+
+- SQLite
+
+**Tools**
+
+- Git & GitHub
+- VS Code
+
+---
+
+## 🔐 Security & Access Control
+
+- Secure password hashing with Werkzeug
+- Frontend route gatekeeping using role validation
+- Backend authorization checks for protected routes
+- Admin-only access to moderation and verification tools
+
+---
+
+## ⚙️ Challenges Overcome
+
+1. 🎢 Managing real-time 3D parallax state alongside form validation logic
+2. 🔗 Implementing efficient Many-to-Many relationships in SQLAlchemy
+3. 🛑 Enforcing frontend invisibility of admin/society dashboards for students using access gatekeeping
+
+---
+
+## 🚀 Future Roadmap
+
+- 🔔 Push notifications for followed societies
+- 📱 QR-based event check-in system
+- 💬 In-app chat between students and society representatives
+- 📊 Advanced analytics dashboard for admins
+
+---
+
+## 🛠 Setup Instructions
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/unievent.git
+
+# Navigate into the project
+cd unievent
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the Flask server
+python app.py
+```
